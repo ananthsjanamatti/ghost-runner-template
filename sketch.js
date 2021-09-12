@@ -37,17 +37,20 @@ function draw() {
   
   if (gameState === "play") {
     
-    if(keyDown("")){
+    if(keyDown("left_arrow")){
+      ghost.x=ghost.x-3
   
       // write a code to move left when left arrow is pressed
     }
-    if(keyDown("")){
+    if(keyDown("right_arrow")){
+      ghost.x=ghost.x+3
   
     
       // write a code to move left when right arrow is pressed
       
     }
-    if(keyDown("")){
+    if(keyDown("space")){
+      ghost.velocityY=-10
   
    
       // write a code to move up when space arrow is pressed
@@ -58,13 +61,22 @@ function draw() {
   
    
       //write a condition for infinte scrolling tower
-    
+    if(tower.y<400){
+      tower.y=300
+    }
       spawnDoors();
 
   
       //write a code to make climbersGroup collide with ghost change the ghost velocity  
 //write a code to make invisibleBlockGroup collide with ghost destroy the ghost and make gamestate to end.
-  
+  if(climbersGroup.isTouching(ghost)){
+  ghost.velocityY=0
+  }
+    if(invisibleBlockGroup.isTouching(ghost)){
+     ghost.destroy ()
+      gameState="end"
+
+    }
   drawSprites();
 }
   if (gameState === "end"){
